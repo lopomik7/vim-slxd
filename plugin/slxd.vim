@@ -41,19 +41,22 @@ highlight SignColumn ctermbg=none guibg=none cterm=bold gui=bold blend=0
 highlight StatusLine ctermbg=none guibg=none cterm=none gui=none blend=0
 highlight StatusLineNC ctermbg=none guibg=none cterm=none gui=none blend=0
 
+" Tab bar styling with your custom colors
+highlight TabLine      ctermfg=white    guifg=#A0A0A0    ctermbg=none guibg=none cterm=bold gui=none
+highlight TabLineSel   ctermfg=green    guifg=#FFFFFF    ctermbg=none guibg=#3B4252 cterm=bold gui=bold
+highlight TabLineFill  ctermfg=white    guifg=#4C566A    ctermbg=none guibg=none   cterm=bold gui=none
+
 " For when changing vim colorschemes in tmux
 augroup TransparentBackground
   autocmd!
   autocmd ColorScheme * highlight Normal ctermbg=none | highlight NonText ctermbg=none
 augroup END
 
-" Tab bar styling with your custom colors
-highlight TabLine    cterm=NONE ctermfg=7  ctermbg=0   " Inactive tabs (white on black, no underline)
-highlight TabLineSel cterm=NONE ctermfg=2  ctermbg=0   " Active tab (green on black, no underline)
-highlight TabLineFill  ctermfg=0  ctermbg=3    " Empty area
-
+" Some visual separations
 set tabline=%!TabPageNumber()
+let &statusline='%#Normal# '
 
+" Find tab page number
 function! TabPageNumber()
   let s = ''
   for i in range(1, tabpagenr('$'))
@@ -168,7 +171,7 @@ function! GetGitBranch()
         let l:dir=expand('%:p:h')
         let l:gitrevparse = system("git -C ".l:dir." rev-parse --abbrev-ref HEAD")
         if !v:shell_error
-            let b:GitBranch="  ".substitute(l:gitrevparse, '\n', '', 'g')." "
+            let b:GitBranch="   ".substitute(l:gitrevparse, '\n', '', 'g')." "
             execute 'highlight StslineBackColorFGPriColorBG guifg=' . g:StslineBackColor ' guibg=' . g:StslineSecColor
         endif
     catch
@@ -176,7 +179,6 @@ function! GetGitBranch()
 endfunction
 
 " Get filetype & custom icon. Put your most used file types first for optimized performance.
-
 function! GetFileType()
 
 if &filetype == ''
