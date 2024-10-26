@@ -41,10 +41,10 @@ highlight SignColumn ctermbg=none guibg=none cterm=bold gui=bold blend=0
 highlight StatusLine ctermbg=none guibg=none cterm=none gui=none blend=0
 highlight StatusLineNC ctermbg=none guibg=none cterm=none gui=none blend=0
 
-" Tab bar styling with your custom colors
-highlight TabLine      ctermfg=white    guifg=#A0A0A0    ctermbg=none guibg=none cterm=bold gui=none
-highlight TabLineSel   ctermfg=green    guifg=#FFFFFF    ctermbg=none guibg=#3B4252 cterm=bold gui=bold
-highlight TabLineFill  ctermfg=white    guifg=#4C566A    ctermbg=none guibg=none   cterm=bold gui=none
+" Tab bar styling with custom colors
+highlight TabLine      ctermfg=none    guifg=#A0A0A0    ctermbg=none guibg=none cterm=none gui=none
+highlight TabLineSel   ctermfg=green   guifg=#FFFFFF    ctermbg=none guibg=#3B4252 cterm=bold gui=bold
+highlight TabLineFill  ctermfg=none    guifg=#4C566A    ctermbg=none guibg=none   cterm=none gui=none
 
 " For when changing vim colorschemes in tmux
 augroup TransparentBackground
