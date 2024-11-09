@@ -89,11 +89,14 @@ endfunction
 " Active statusline
 function! ActivateStatusline()
     call GetFileType()
+    call GetGitBranch()
     setlocal statusline=%#StslinePriColorFG#\ %{StslineMode()}%#StslinePriColorFG#%{get(b:,'coc_git_status',b:GitBranch)}%{get(b:,'coc_git_blame','')}%#StslinePriColorFG#%#StslinePriColorFG#\ %{&readonly?\"\ \":\"\"}%f\ %#StslineModColorFG#%{&modified?\"\ \":\"\"}%=%#StslinePriColorFG#\%{b:FiletypeIcon}\%#StslineSecColorBG#%#StslineSecColorBG#%{&fenc!='utf-8'?\"\ \":''}%{&fenc!='utf-8'?&fenc:''}%{&fenc!='utf-8'?\"\ \":''}%#StslinePriColorFGSecColorFG#%#StslinePriColorFG#\ %p\%%\ %#StslinePriColorFG#%l%#StslinePriColorFG#/%L\:%c\ \%{getfsize(expand('%'))}\:B\ %{wordcount().words}\:w\ %{&fileformat}\ [%n]:\%{GetOpenBufferCount()}
 endfunction
 
 " Inactive statusline
 function! DeactivateStatusline()
+    call GetFileType()
+    call GetGitBranch()
     if !exists("b:GitBranch") || b:GitBranch == ''
         setlocal statusline=%#StslineSecColorBG#\ inactive\ %#StslineSecColorBG#%{get(b:,'coc_git_statusline',b:GitBranch)}%{get(b:,'coc_git_blame','')}%#StslineBackColorFGSecColorFG#%#StslineBackColorBG#\ %{&readonly?\"\ \":\"\"}%f\ %#StslineModColorFG#%{&modified?\"\ \":\"\"}%=%#StslineBackColorBG#\%{b:FiletypeIcon}\%#StslineSecColorFGBackColorBG#%#StslineSecColorBG#\ %p\%%\ %l/%L\:%c\ %{getfsize(expand('%'))}\:B\ %{wordcount().words}\:w\ %{&fileformat}\ [%n]
     else
